@@ -186,7 +186,7 @@ class ProjectController extends Controller
             }
         }
 //        die(var_dump($files));
-        if(empty($files))
+        if(!empty($files))
         {
             foreach($files as $index => $file)
             {
