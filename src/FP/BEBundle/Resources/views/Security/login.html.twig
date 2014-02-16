@@ -1,0 +1,178 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<!DOCTYPE html>
+<!--
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.0
+Version: 1.5.3
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>Finding Projects Login | Admin Dashboard</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <meta name="MobileOptimized" content="320">
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="{{ asset("bundles/fpbe/css/font-awesome.min.css") }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset("bundles/fpbe/js/plugins/uniform/css/uniform.default.min.css") }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset("bundles/fpfe/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="{{ asset("bundles/fpbe/js/plugins/select2/select2_metro.css") }}" />
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME STYLES -->
+    <link href="{{ asset("bundles/fpbe/css/style-metronic.css") }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset("bundles/fpbe/css/style.css") }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset("bundles/fpbe/css/style-responsive.css") }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset("bundles/fpbe/css/plugins.css") }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset("bundles/fpbe/css/themes/default.css") }}" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="{{ asset("bundles/fpbe/css/pages/login.css") }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset("bundles/fpbe/css/custom.css") }}" rel="stylesheet" type="text/css"/>
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="{{ asset("favicon.ico") }}" />
+</head>
+<!-- BEGIN BODY -->
+<body class="login">
+<!-- BEGIN LOGO -->
+<div class="logo">
+    <img src="{{ asset("bundles/fpbe/img/logo.png") }}" alt="" />
+</div>
+<!-- END LOGO -->
+<!-- BEGIN LOGIN -->
+<div class="content">
+<!-- BEGIN LOGIN FORM -->
+
+{% block fos_user_content %}
+    {% if error %}
+        <div>{{ error|trans }}</div>
+    {% endif %}
+
+<form class="login-form" action="{{ path("fos_user_security_check") }}" method="post">
+    <h3 class="form-title">Login</h3>
+    <div class="alert alert-danger display-hide">
+        <button class="close" data-close="alert"></button>
+        <span>Enter any username and password.</span>
+    </div>
+    <div class="form-group">
+        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+        <label for="username" class="control-label visible-ie8 visible-ie9">{{ 'security.login.username'|trans }}</label>
+
+        <div class="input-icon">
+            <i class="fa fa-user"></i>
+            <input type="text" id="username" name="_username" class="form-control placeholder-no-fix" placeholder="Username" autocomplete="off" value="{{ last_username }}" required="required" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password" class="control-label visible-ie8 visible-ie9">{{ 'security.login.password'|trans }}</label>
+
+        <div class="input-icon">
+            <i class="fa fa-lock"></i>
+            <input type="password" class="form-control placeholder-no-fix" autocomplete="off" placeholder="Password" id="password" name="_password" required="required" />
+        </div>
+    </div>
+    <div class="form-actions">
+        <label class="checkbox">
+            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+        </label>
+
+        <input type="submit" class="btn green pull-right" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" /><i class="m-icon-swapright m-icon-white"></i>
+
+    </div>
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    <div class="forget-password">
+        <h4>Forgot your password ?</h4>
+        <p>
+            no worries, click <a href="javascript:;"  id="forget-password">here</a>
+            to reset your password.
+        </p>
+    </div>
+</form>
+
+
+
+{% endblock %}
+<!-- END LOGIN FORM -->
+<!-- BEGIN FORGOT PASSWORD FORM -->
+<form class="forget-form" action="{{ path("fos_user_resetting_send_email") }}" method="post">
+    <h3 >Forget Password ?</h3>
+    <p>Enter your username or e-mail address below to reset your password.</p>
+    <div class="form-group">
+        <div class="input-icon">
+            <i class="fa fa-envelope"></i>
+            <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username or Email" name="username" />
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="button" id="back-btn" class="btn">
+            <i class="m-icon-swapleft"></i> Back
+        </button>
+        <button type="submit" class="btn green pull-right">
+            Submit <i class="m-icon-swapright m-icon-white"></i>
+        </button>
+    </div>
+</form>
+<!-- END FORGOT PASSWORD FORM -->
+</div>
+<!-- END LOGIN -->
+<!-- BEGIN COPYRIGHT -->
+<div class="copyright">
+    2013 &copy; <a style="color:#C5CB0D" href="http://thesevenlayers.net">TheSevenLayers</a>
+</div>
+<!-- END COPYRIGHT -->
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="{{ asset("bundles/fpbe/js/plugins/respond.min.js") }}"></script>
+<script src="{{ asset("bundles/fpbe/js/plugins/excanvas.min.js") }}"></script>
+<![endif]-->
+<script src="{{ asset("bundles/fpbe/js/jquery-1.10.2.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset("bundles/fpbe/js/plugins/jquery-migrate-1.2.1.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset("bundles/fpbe/js/plugins/bootstrap/js/bootstrap.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset("bundles/fpbe/js/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js") }}" type="text/javascript" ></script>
+<script src="{{ asset("bundles/fpbe/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset("bundles/fpbe/js/plugins/jquery.blockui.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset("bundles/fpbe/js/plugins/jquery.cookie.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset("bundles/fpbe/js/plugins/uniform/jquery.uniform.min.js") }}" type="text/javascript" ></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="{{ asset("bundles/fpbe/js/plugins/jquery-validation/dist/jquery.validate.min.js") }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset("bundles/fpbe/js/plugins/select2/select2.min.js") }}"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="{{ asset("bundles/fpbe/js/app.js") }}" type="text/javascript"></script>
+<script src="{{ asset("bundles/fpbe/js/login.js") }}" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<script>
+    jQuery(document).ready(function() {
+        App.init();
+        Login.init();
+
+        $("body").on("keypress", ".login-form" ,function(e)
+        {
+            submitForm(e);
+        });
+
+    });
+    function submitForm(e)
+    {
+        if(e && e.keyCode == 13)
+        {
+            $(e.currentTarget).submit();
+        }
+    }
+</script>
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

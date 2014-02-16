@@ -1,0 +1,28 @@
+{% extends "FPFEBundle::layout.html.twig" %}
+{% block title %}FindingProjects - All Projects{% endblock %}
+{% block content %}
+    <div class="fullscreen_block">
+        {{ render_esi(controller("FPFEBundle:partial/ProjectsPartial:getProjectsContent")) }}
+    </div> <!-- .fullscreen_block -->
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        "bundles/fpfe/js/waypoint.js"
+        "bundles/fpfe/js/jquery.isotope.min.js"
+        "bundles/fpfe/js/sorting.js"
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+    $(window).load(function(){
+    $('#list').portfolio_addon({
+    type : 2,
+    load_count : 5,
+    items : items_set
+    });
+    });
+    </script>
+{% endblock %}

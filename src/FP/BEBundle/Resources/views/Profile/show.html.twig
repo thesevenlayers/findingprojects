@@ -1,0 +1,61 @@
+{% extends "FPBEBundle::layout.html.twig" %}
+
+{% block content %}
+<!-- BEGIN PAGE HEADER-->
+    <div class="clearfix"></div>
+    <div class="page-container">
+        {{ parent() }}
+        <div class="page-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                    <h3 class="page-title">
+                        Admin Account
+                    </h3>
+                    <ul class="page-breadcrumb breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="{{ path("fp.be.home.get_list") }}">Home</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li><a href="#">Admin Account</a></li>
+                    </ul>
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                    <div class="portlet box grey">
+                        <div class="portlet-title">
+                            <div class="caption"><i class="fa fa-file-text"></i>Manage Profile</div>
+                        </div>
+
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    {% block fos_user_content %}
+                                        {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+                                    {% endblock fos_user_content %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END EXAMPLE TABLE PORTLET-->
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+    <!-- BEGIN PAGE CONTENT-->
+
+
+
+
+    <!-- END PAGE CONTENT-->
+{% endblock %}

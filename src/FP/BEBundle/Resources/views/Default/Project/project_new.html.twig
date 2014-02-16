@@ -1,0 +1,171 @@
+{% extends "FPBEBundle::layout.html.twig" %}
+
+{% block title %}Admin Panel - Project - New Item{% endblock %}
+
+{% block content %}
+    <div class="clearfix"></div>
+    <div class="page-container">
+        {{ parent() }}
+        <!-- BEGIN PAGE -->
+        <div class="page-content">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                    <h3 class="page-title">
+                        New Item
+                    </h3>
+                    <ul class="page-breadcrumb breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="{{ path("fp.be.project.get_list") }}">Home</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="{{ url("fp.be.project.get_list") }}">Projects</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="">Add Item</a>
+                        </li>
+                    </ul>
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+                </div>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN EXTRAS PORTLET-->
+                    <div class="portlet box grey">
+                        <div class="portlet-title">
+                            <div class="caption">Project Details</div>
+                        </div>
+                        <div class="portlet-body form">
+                            <!-- BEGIN FORM-->
+                            {{ form_start(form, {"action": url("fp.be.project.post_new") , "attr":{"class":"form-horizontal form-bordered"} }) }}
+                            {#<form action="#" class="form-horizontal form-bordered">#}
+                                <div class="form-body">
+                                    <div class="form-group last">
+                                        {{ form_label(form.title,null, {"label_attr":{"class":"control-label  col-md-3" } }) }}
+                                        {#<label class="control-label  col-md-3">Project Title</label>#}
+                                        <div class="col-md-9">
+                                            {{ form_widget(form.title, {"attr": {"class": "form-control"} }) }}
+                                            {#<input class="form-control"  type="text" />#}
+                                        </div>
+                                    </div>
+                                    <div class="form-group last">
+                                        {#{{ form_label(form.artist_name, null, {"label_attr":{"class":"control-label  col-md-3"} }) }}#}
+                                        <label class="control-label  col-md-3">Artist Name</label>
+                                        <div class="col-md-9">
+                                            <div class="fileupload-new">
+                                                {#{{ form_widget(form.artist_name, {"attr":{"class":"tags"} } ) }}#}
+                                                <input id="artists_tags" type="hidden" />
+                                                {#<span>test</span>#}
+                                                {#<input id="tags_1" type="text" class="form-control tags" value="foo,bar,baz,roffle" />                                           </div>#}
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="form-group last">
+                                        {{ form_label(form.description, null, {"label_attr":{"class":"control-label  col-md-3"} }) }}
+                                        {#<label class="control-lab`el  col-md-3">Description</label>#}
+                                        <div class="col-md-9">
+                                            {{ form_widget(form.description, {"rows": "6", "attr":{"class":"ckeditor form-control"} }) }}
+                                            {#<textarea class="ckeditor form-control" name="editor1" rows="6"></textarea>#}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="submit" class="btn green"><i class="fa fa-check"></i> Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ form_rest(form) }}
+                            {{ form_end(form) }}
+                            {#</form>#}
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                    <!-- END EXTRAS PORTLET-->
+                </div>
+            </div>
+
+            <!-- END PAGE CONTENT-->
+        </div>
+        <!-- END PAGE -->
+    </div>
+    <!-- END CONTAINER -->
+{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+        "bundles/fpbe/js/plugins/dropzone/css/dropzone.css"
+        "bundles/fpbe/css/jquery-ui.css"
+        "bundles/fpbe/js/plugins/jquery-file-upload/css/jquery.fileupload.css"
+        filter="cssrewrite"
+        output="css/final_project.css"
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+    <link rel="stylesheet" href="{{ asset("bundles/fpbe/js/plugins/select2/select2.css") }}"/>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        "bundles/fpbe/js/plugins/dropzone/dropzone.js"
+        "bundles/fpbe/js/dropzone_custom.js"
+        "bundles/fpbe/js/jquery-ui.min.js"
+        "bundles/fpbe/js/plugins/select2/select2.min.js"
+        "bundles/fpbe/js/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js"
+        "bundles/fpbe/js/plugins/jquery-file-upload/js/jquery.iframe-transport.js"
+        "bundles/fpbe/js/plugins/jquery-file-upload/js/jquery.fileupload.js"
+        output="js/final_project.js"
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // initiate layout and plugins
+            $("#artists_tags").select2({
+                width: '100%',
+                tags: {{ artists|raw }},
+                createSearchChoice: function(term, data){
+                    if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length === 0)
+                    {
+                        return {id:term, text:term};
+                    }
+                }
+            });
+
+            var form_action = $(".form-horizontal").attr("action");
+
+            $("#artists_tags").on("change", function(e){
+                var qs = [];
+                var data_arr = $("#artists_tags").select2("data");
+                for(var i = 0; i < data_arr.length; i++){
+                    qs.push("artists[]=" + encodeURI(data_arr[i]["text"]));
+                }
+                qs = qs.join("&");
+                $(".form-horizontal").attr("action", form_action + "?" + qs);
+            });
+
+            App.init();
+            FormComponents.init();
+        })
+    </script>
+
+{% endblock %}
+
+{% form_theme form with ['ThraceFormBundle:Form:fields.html.twig'] %}
+

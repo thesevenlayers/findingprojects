@@ -1,0 +1,76 @@
+<div class="row-fluid">
+    <div class="span4 module_cont module_text_area">
+
+        <img alt="" src="{{ artist.getWebPath ? asset(artist.getWebPath) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" }}">
+
+    </div>
+    <div class="span8 module_cont module_text_area">
+        <h2>{{ artist.artistName }}</h2>
+        {% if artist.age %}<h6>{{ artist.age }}</h6>{% endif %}
+        <h6>{{ artist.location }}</h6>
+
+        <p>{{ artist.biography|raw }}</p>
+
+        {% if artist.url %}
+            <div class="blogpost_share">
+                <div class="post_type_ico">
+                    <a href="{{ artist.url }}"><span class="post_type_link"></span></a>
+                </div>
+                <div class="clear"><!-- ClearFix --></div>
+            </div>
+        {% endif %}
+    </div>
+</div><!-- .row-fluid -->
+
+{% if artist.projects|length > 0 %}
+    <div class="row-fluid">
+        <div class="span12 module_cont module_feature_posts">
+            <div class="bg_title"><h3 class="headInModule">Projects involved in</h3></div>
+            <div class="featured_slider">
+                <div class="carouselslider featured_posts items4" data-count="4">
+                    <ul class="item_list">
+
+
+                        {% for project in artist.projects %}
+                            <li>
+                                <a href="{{ url("fpfe_projects_display", {"id": project.id}) }}">
+                                    <div class="item">
+                                        <div class="img_block">
+                                            {% if project.photos|length > 0 %}
+                                                <img src="{{ project.photos|length > 0 ? asset(project.firstPhoto.getWebPath) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" }}" alt="" width="270" height="190">
+                                            {% elseif project.video %}
+                                                <img src="{{ project.video ? "http://img.youtube.com/vi/."~item.video~"/hqdefault.jpg" : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" }}" alt="" width="270" height="190">
+                                            {% else %}
+                                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" alt="" width="270" height="190">
+                                            {% endif %}
+                                            <div class="ico_gallery"></div>
+                                            <div class="carousel_fadder"></div>
+                                        </div>
+                                        <div class="carousel_body">
+                                            <div class="post_type_ico">
+                                                {% if project.photos|length > 0 %}
+                                                    <span class="post_type_gallery"></span>
+                                                {% elseif project.video %}
+                                                    <span class="post_type_video"></span>
+                                                {% endif %}
+                                            </div><!-- .post type -->
+                                            <div class="carousel_title">
+                                                <h6><a href="#">{{ project.title }}</a></h6>
+                                            </div>
+                                            <div class="carousel_desc">
+                                                <div class="exc">{{ project.description|raw }}</div>
+                                            </div>
+                                            <div class="carousel_meta"><span>{{ project.createdAt|date("d M Y") }}</span></div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div><!-- .featured_slider -->
+        </div><!-- .module_cont -->
+    </div><!-- .row-fluid -->
+{% endif %}

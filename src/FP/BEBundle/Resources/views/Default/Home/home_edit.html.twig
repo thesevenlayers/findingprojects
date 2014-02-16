@@ -1,0 +1,56 @@
+{% extends "FPBEBundle::layout.html.twig" %}
+
+{% block title %}Admin Panel - Home - Edit Item{% endblock %}
+
+{% block content %}
+    <div class="clearfix"></div>
+    <div class="page-container">
+        {{ parent() }}
+        <!-- BEGIN PAGE -->
+        <div class="page-content">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                    <h3 class="page-title">
+                        Edit Item
+                    </h3>
+                    <ul class="page-breadcrumb breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="{{ path("fp.be.home.get_list") }}">Home</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="">Edit Item</a>
+                        </li>
+                    </ul>
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+                </div>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+            {{ render_esi(controller("FPBEBundle:Home:getPartialEditForm", {"item": item})) }}
+            <!-- END PAGE CONTENT-->
+        </div>
+        <!-- END PAGE -->
+    </div>
+    <!-- END CONTAINER -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset("bundles/fpbe/js/ImgCrop.js") }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var cropper = new ImgCrop({
+                wrapper_class: "img_crop",
+                form_class: "item_form",
+                input_class: "image_upload_btn",
+                image_class: "thumbnail",
+                crop: false
+            });
+            cropper.init();
+        })
+    </script>
+{% endblock %}

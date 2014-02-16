@@ -1,0 +1,19 @@
+<div class="portlet-body" id="emails">
+    <table class="table table-striped table-bordered table-hover" id="sample_1">
+        <thead>
+        <tr>
+            <th></th>
+            <th >Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for email in emails %}
+            <tr class="odd gradeX">
+                <td><input type="checkbox" class="checkboxes delete_checkbox" value="{{ email.id }}" /></td>
+                <td ><a href="mailto:{{ email.address }}">{{ email.address }}</a></td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>

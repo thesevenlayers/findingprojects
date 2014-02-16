@@ -1,0 +1,88 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+    "bundles/fpfe/css/theme.css"
+    "bundles/fpfe/css/skin.css"
+    "bundles/fpfe/css/fs_gllaery.css"
+    "bundles/fpfe/css/plugins.css"
+    "bundles/fpfe/css/responsive.css"
+    "bundles/fpfe/css/theme_settings.css"
+    output="css/final_fe_layout.css"
+    filter="cssrewrite"
+    %}
+    <link rel="stylesheet" type="text/css" href="{{ asset_url }}">
+    {% endstylesheets %}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset("bundles/fpfe/css/color_theme.css") }}" id="theme_color">
+    <link rel="stylesheet" type="text/css" href="{{ asset("bundles/fpfe/css/ie_css.css") }}">
+
+{% endblock %}
+
+{% block body %}
+    {% block header %}
+        <header class="">
+            <div class="header_wrapper container">
+                <a href="{{ url("fpfe_homepage") }}" class="logo"><img src="{{ asset("bundles/fpfe/img/logo.png") }}" alt=""  class="logo_def" width="170" height="38"><img src="{{ asset("bundles/fpfe/img/retina/logo.png") }}" alt="" class="logo_retina" width="125" height="39"></a>
+                <nav>
+                    <ul class="menu">
+                        <li class=""><a href="{{ url("fpfe_homepage") }}">Home</a>
+
+                        </li>
+                        <li><a href="{{ url("fpfe_about") }}">About</a>
+
+                        </li>
+                        <li><a href="{{ url("fpfe_projects_index") }}">Projects</a>
+                        </li>
+                        <li><a href="{{ url("fpfe_artists_index") }}">Artists</a>
+                        </li>
+                        <li><a href="{{ url("fpfe_contact") }}">Contacts</a>
+                        </li>
+                    </ul><!-- .menu -->
+                    <div class="clear"></div>
+                </nav>
+            </div>
+        </header>
+    {% endblock %}
+    {% block content %}{% endblock %}
+    {% block footer %}
+        <footer>
+            {#<div class="container">#}
+                {##}
+            {#</div><!-- .row-fluid -->#}
+
+            {{ render_esi(controller("FPFEBundle:partial/LayoutPartial:getUrls")) }}
+
+        </footer>
+    {% endblock %}
+    <div class="header2top"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset("bundles/fpfe/js/theme.js") }}"></script>
+    <!--[if IE 8 ]>
+    <script>
+        var e = ("article,aside,figcaption,figure,footer,header,hgroup,nav,section,time").split(',');
+        for (var i = 0; i < e.length; i++) {
+            document.createElement(e[i]);
+        }
+    </script>
+    <![endif]-->
+    <script type="text/javascript" src="{{ asset("bundles/fpfe/js/fs_gllaery.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("bundles/fpfe/js/custom.js") }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var currentHref = window.location.href;
+            $(".menu a").each(function(){
+                if(currentHref.indexOf($(this).attr("href")) != -1)
+                {
+                    $(this).parent().addClass("current-menu-parent");
+                }
+            })
+        });
+    </script>
+{% endblock %}

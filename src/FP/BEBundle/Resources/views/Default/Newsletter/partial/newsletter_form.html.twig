@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXTRAS PORTLET-->
+        <div class="portlet box grey">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-bell"></i>Newsletter Editors</div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                {{ form_start(form, {"action":path("fp.be.newsletter.post_edit"), "attr":{"class":"form-horizontal form-bordered"} }) }}
+                {#<form action="#" class="form-horizontal form-bordered">#}
+                    <div class="form-body">
+                        <div class="form-group last">
+                            {{ form_label(form.description, null, {"label_attr":{"class":"control-label col-md-3"} }) }}
+                            {#<label class="control-label  col-md-3">Description</label>#}
+                            <div class="col-md-9">
+                                {{ form_widget(form.description, {"rows":"6", "attr":{"class":"form-control"} }) }}
+                                {#<textarea class="ckeditor form-control" name="editor1" rows="6"></textarea>#}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn green"><i class="fa fa-check"></i> Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {#</form>#}
+                    {{ form_rest(form) }}
+                {{ form_end(form) }}
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END EXTRAS PORTLET-->
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box grey">
+            <div class="portlet-title">
+                <div class="caption caption2">Mail</div>
+                <div class="btn-group pull-right">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        {#<li><a href="#">Save as PDF</a></li>#}
+                        <li><a href="{{ url("fp.be.newsletter.email_to_text", {"id": newsletter.id}) }}">Download Text file</a></li>
+                        <li>
+                            <form action="{{ url("fp.be.newsletter.delete_newsletter_email") }}" method="post">
+                                <button type="submit" id="multidelete_btn">Delete</button>
+                            </form>
+                            {#<a href="{{ url("fp.be.newsletter.delete_newsletter_email") }}" id="multidelete_btn">Delete</a>#}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {{ include("@FPBE/Default/Newsletter/partial/newsletter_emails.html.twig", {"emails": emails}) }}
+
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>

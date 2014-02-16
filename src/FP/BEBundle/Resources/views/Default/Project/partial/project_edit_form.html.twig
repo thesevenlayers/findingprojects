@@ -1,0 +1,230 @@
+<div class="row margin-bottom-10" xmlns="http://www.w3.org/1999/html">
+    <div class="col-md-12">
+        <a id="btnPhoto" class="icon-btn btnUpload" href="#">
+            <i class="fa fa-picture-o"></i>
+            <div>Upload photos</div>
+        </a>
+        <a id="btnVideo" class="icon-btn btnUpload" href="#">
+            <i class="fa fa-video-camera"></i>
+            <div>Upload video</div>
+        </a>
+    </div>
+</div>
+<div class="row" id="uploadPhoto">
+    <div class="col-md-12">
+        <!-- BEGIN EXTRAS PORTLET-->
+        <div class="portlet box grey">
+            <div class="portlet-title">
+                <div class="caption">Upload photos</div>
+            </div>
+            <div class="portlet-body form">
+                <!-- portlet-body-->
+                <br>
+                <div class="col-md-12">
+                    {{ include("@FPBE/Default/partial/dropzone.html.twig", { post_url: url("fp.be.project.photo.add", {"id": item.id}) , photos: item.photos , photo_delete_link:"fp.be.project.photo.delete"} ) }}
+                </div>
+                <!-- END portlet-body-->
+            </div>
+        </div>
+        <!-- END EXTRAS PORTLET-->
+    </div>
+</div>
+<div class="row" style="display: none" id="uploadVideo">
+    <div class="col-md-12">
+        <!-- BEGIN EXTRAS PORTLET-->
+        <div class="portlet box grey">
+            <div class="portlet-title">
+                <div class="caption">Upload Video</div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                {{ form_start(form_vid, {"action": url("fp.be.project.post_video_edit", {"id": item.id}) , "attr":{"class":"form-horizontal form-bordered"} }) }}
+                    <div class="form-body">
+                        <div class="form-group last">
+                            {{ form_label(form_vid.video,null, {"label_attr":{"class":"control-label  col-md-3" } }) }}
+                            {#<label class="control-label  col-md-3">Video Link</label>#}
+                            <div class="col-md-9">
+                                {{ form_widget(form_vid.video, {"attr": {"class": "form-control"} }) }}
+                                {#<input class="form-control"  type="text" />#}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn green"><i class="fa fa-check"></i> Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {#{{ form_rest(form) }}#}
+                {#{{ form_end(form) }}                <!-- END FORM-->#}
+                </form>
+            </div>
+        </div>
+        <!-- END EXTRAS PORTLET-->
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXTRAS PORTLET-->
+        <div class="portlet box grey">
+            <div class="portlet-title">
+                <div class="caption">Project Details</div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                {{ form_start(form, {"action": url("fp.be.project.post_edit", {"id": item.id}) , "attr":{"class":"form-horizontal form-bordered tag-form", "enctype": "multipart/form-data"} }) }}
+                {#<form action="#" class="form-horizontal form-bordered">#}
+                <div class="form-body">
+                    <div class="form-group last">
+                        {{ form_label(form.title,null, {"label_attr":{"class":"control-label  col-md-3" } }) }}
+                        {#<label class="control-label  col-md-3">Project Title</label>#}
+                        <div class="col-md-9">
+                            {{ form_widget(form.title, {"attr": {"class": "form-control"} }) }}
+                            {#<input class="form-control"  type="text" />#}
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        {#{{ form_label(form.artist_name, null, {"label_attr":{"class":"control-label  col-md-3"} }) }}#}
+                        <label class="control-label  col-md-3">Artist Name</label>
+                        <div class="col-md-9">
+                            <div class="fileupload-new">
+                                <input type="hidden" id="artists_tags">
+                                {#{{ form_widget(form.artist_name, {"id": "tags_1", "attr":{"class":"form-control tags"} } ) }}#}
+                                {#<input id="tags_1" type="text" class="form-control tags" value="foo,bar,baz,roffle" />                                           </div>#}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        {{ form_label(form.description, null, {"label_attr":{"class":"control-label  col-md-3"} }) }}
+                        {#<label class="control-lab`el  col-md-3">Description</label>#}
+                        <div class="col-md-9">
+                            {{ form_widget(form.description, {"rows": "6", "attr":{"class":"ckeditor form-control"} }) }}
+                            {#<textarea class="ckeditor form-control" name="editor1" rows="6"></textarea>#}
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                            <label class="control-label  col-md-3">Upload Pdf Files</label>
+                            <div class="col-md-9">
+                                {% if item.files|length > 0 %}
+                                    {% for file in item.files %}
+                                        <div class="file_wrapper">
+                                            <a href="{{ asset(file.getWebPath) }}">{{ file.getFileName }}</a>
+                                            <br>
+                                            <a class="delete_pdf" href="{{ url("fp.be.project.pdf.delete", {"id": file.id}) }}">Delete</a>
+                                            <hr>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                <input id="fileupload" type="file" name="files[]"  multiple>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-actions fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn green"><i class="fa fa-check"></i> Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                    {#</form>#}
+                    <!-- END FORM-->
+                </div>
+            </div>
+            <!-- END EXTRAS PORTLET-->
+        </div>
+    </div>
+<div class="row sponsers">
+    <div class="col-md-12">
+        <div class="portlet box grey">
+            <div class="portlet-title">
+                <div class="caption caption2">Add Sponsers</div>
+                <a data-toggle="modal" class="btn blue pull-right btn-add" href="#add"><i class="fa fa-pencil"></i>Add Sponsers</a>
+            </div>
+            <div class="portlet-body">
+                    <div class="row">
+                        <!--{% for sponser in item.sponsers %}-->
+                            <!--<img src="{{ asset(sponser.getWebPath) }}" />-->
+                            <!--<a href="{{ sponser.url }}">{{ sponser.url }}</a>-->
+                            <!--<br>-->
+                            <!--<a href="{{ url("fp.be.project.sponser.delete", {"id": sponser.id}) }}">Delete</a>-->
+                            <!--<hr>-->
+                        <!--{% endfor %}-->
+
+                        <div class="col-md-12">
+                            {% for sponser in item.sponsers %}
+                            <div class="col-md-3 col-sm-4 mix category_2">
+                                <div class="mix-inner">
+                                    <img class="img-responsive" src="{{ asset(sponser.getWebPath) }}" alt="">
+                                    <div class="mix-details">
+                                        <h4><a href="#"> Cascusamus et iusto accusamus</a></h4>
+                                        <div class="col-md-4 iconGroup">
+                                            <a href="{{ url("fp.be.project.sponser.delete", {"id": sponser.id}) }}">Delete</a>
+                                            <a class="mix-preview fancybox-button" href="{{ asset(sponser.getWebPath) }}" title="Project Name" data-rel="fancybox-button"><i class="fa fa-search"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--END DIV-->
+                            {% endfor %}
+                        </div>
+                        <div class="modal fade" id="add" tabindex="-1" role="basic" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                        <h4>Add New Sponsers</h4>
+                                    </div>
+                                    {{ form_start(form_sponser, {"action":path("fp.be.project.sponser.add", {"id": item.id }), "attr":{"class":"form-horizontal form-bordered item_form"} }) }}
+                                    <div class="modal-body">
+                                        <div class="form_body">
+                                            <!-- BEGIN FORM-->
+                                            <div class="form-group last">
+                                                {{ form_label(form_sponser.image_file, null, {"label_attr":{"class":"control-label col-md-3"} }) }}
+                                                <div class="col-md-9 img_crop">
+                                                    <div style="max-width: 300px; height: auto; display: inline-block; min-width: 100px;" class="fileupload-new thumbnail imgUpload">
+                                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" id="banner_photo_preview" style="height: auto;">
+                                                    </div>
+                                                    <div>
+                                                        {{ form_widget(form_sponser.image_file, {"attr":{"class":"image_upload_btn upload"}, "id":"banner_photo_btn" }) }}
+                                                        <div style="color: red;font-weight: bold;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group last">
+                                                {{ form_label(form_sponser.url, null , {"label_attr":{"class": "control-label col-md-3"} }) }}
+                                                <div class="col-md-9">
+                                                    {{ form_widget(form_sponser.url, {"attr":{"class":"form-control"} }) }}
+                                                </div>
+                                            </div>
+                                            {#</form>#}
+
+                                            <!-- END FORM-->
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn green"><i class="fa fa-check"></i>Save</button>
+                                    </div>
+                                    {{ form_rest(form_sponser) }}
+                                    {{ form_end(form_sponser) }}
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                    </div>
+
+
+            </div><!--End portlet Body -->
+        </div>
+    </div>
+</div>
+    <!-- END PAGE CONTENT-->
+</div>

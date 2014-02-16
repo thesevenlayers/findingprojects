@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="fp.be.project.get_list" pattern="/projects" methods="GET">
+        <default key="_controller">FPBEBundle:Project:getList</default>
+    </route>
+
+    <route id="fp.be.project.get_new" pattern="/projects/new" methods="GET">
+        <default key="_controller">FPBEBundle:Project:getNew</default>
+    </route>
+
+    <route id="fp.be.project.post_new" pattern="/projects/new" methods="POST">
+        <default key="_controller">FPBEBundle:Project:postNew</default>
+    </route>
+
+    <route id="fp.be.project.get_edit" pattern="/projects/{id}/edit" methods="GET">
+        <default key="_controller">FPBEBundle:Project:getEdit</default>
+    </route>
+
+    <route id="fp.be.project.post_edit" pattern="/projects/{id}/edit" methods="POST">
+        <default key="_controller">FPBEBundle:Project:postEdit</default>
+    </route>
+
+    <route id="fp.be.project.post_video_edit" pattern="/projects/{id}/edit/video" methods="POST">
+        <default key="_controller">FPBEBundle:Project:postEditVideo</default>
+    </route>
+
+
+    <route id="fp.be.project.delete" pattern="/projects/{id}/delete" methods="POST">
+        <default key="_controller">FPBEBundle:Project:postDelete</default>
+    </route>
+    
+    <route id="fp.be.project.photo.add" pattern="/projects/{id}/photo/add" methods="POST">
+        <default key="_controller">FPBEBundle:Project:postProjectPhotos</default>
+    </route>
+
+
+    <route id="fp.be.project.sponser.add" pattern="/projects/{id}/sponser/add" methods="POST">
+        <default key="_controller">FPBEBundle:Sponser:postAddToProject</default>
+    </route>
+
+    <route id="fp.be.project.sponser.delete" pattern="/projects/sponser/{id}/delete" methods="GET">
+        <default key="_controller">FPBEBundle:Sponser:deleteProjectSponser</default>
+    </route>
+
+    <route id="fp.be.project.photo.delete" pattern="/projects/photo/{id}/delete" methods="POST">
+        <default key="_controller">FPBEBundle:Project:deleteProjectPhotos</default>
+    </route>
+
+    <route id="fp.be.project.pdf.delete" pattern="/projects/pdf/{id}/delete" methods="GET">
+        <default key="_controller">FPBEBundle:Project:deleteProjectPdf</default>
+    </route>
+
+</routes>

@@ -1,0 +1,26 @@
+{% extends "FPFEBundle::layout.html.twig" %}
+{% block title %}FindingProjects - Project - ProjectName{% endblock %}
+{% block content %}
+    <div class="main_wrapper">
+        <!-- C O N T E N T -->
+        {{ render_esi(controller("FPFEBundle:partial/ProjectsPartial:getProjectInnerContent", {"id": project.id})) }}
+
+    </div><!-- .main_wrapper -->
+
+{% endblock %}
+
+{% block footer %}
+    {{ render_esi(controller("FPFEBundle:partial/SponserPartial:getSponsers", {"sponsers": project.sponsers} )) }}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    "bundles/fpfe/js/waypoint.js"
+    "bundles/fpfe/js/jquery.isotope.min.js"
+    "bundles/fpfe/js/sorting.js"
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

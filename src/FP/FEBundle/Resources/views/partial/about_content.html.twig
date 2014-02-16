@@ -1,0 +1,32 @@
+<div class="content_block no-sidebar row">
+    <div class="fl-container span12">
+        <div class="row">
+            <div class="posts-block span12">
+                <div class="contentarea">
+                    <div class="row-fluid">
+                        <div class="span4 module_cont module_text_area">
+                            {% if about.getWebPath %}
+                                <img alt="" src="{{ asset(about.getWebPath) }}">
+                            {% endif %}
+                        </div>
+                        <div class="span8 module_cont module_text_area">
+                            <blockquote>
+                                {{ about.description|raw }}
+                            </blockquote>
+                    </div><!-- .row-fluid -->
+
+
+                </div><!-- .contentarea -->
+            </div>
+            <div class="left-sidebar-block span3">
+                //Sidebar Text
+            </div><!-- .left-sidebar -->
+        </div>
+        <div class="clear"><!-- ClearFix --></div>
+    </div><!-- .fl-container -->
+    <div class="right-sidebar-block span3">
+        <aside class="sidebar">
+        </aside>
+    </div><!-- .right-sidebar -->
+    <div class="clear"><!-- ClearFix --></div>
+</div>

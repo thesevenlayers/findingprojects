@@ -1,0 +1,66 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block content %}
+<div class="clearfix"></div>
+<div class="page-container">
+    {% block sidebar %}
+        {{ parent() }}
+    {% endblock %}
+    <div class="page-content">
+<!-- BEGIN PAGE HEADER-->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                    <h3 class="page-title">
+                        Edit Admin Account
+                    </h3>
+                    <ul class="page-breadcrumb breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="{{ path("fp.be.home.get_list") }}">Home</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="{{ path("fos_user_profile_show") }}">Admin Account</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li><a href="#">Edit</a></li>
+                    </ul>
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+            </div>
+            <!-- END PAGE HEADER-->
+    
+    <!-- BEGIN PAGE CONTENT-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                    <div class="portlet box grey">
+                        <div class="portlet-title">
+                            <div class="caption"><i class="fa fa-file-text"></i>Manage Profile</div>
+
+                        </div>
+
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                <div class="test">    
+							    {% block fos_user_content %}
+							        {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+							    {% endblock fos_user_content %}
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END EXAMPLE TABLE PORTLET-->
+                </div>
+            </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    <!-- END PAGE CONTENT-->
+{% endblock %}

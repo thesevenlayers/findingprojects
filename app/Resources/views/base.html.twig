@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="ie ie9"> <!--<![endif]-->
+<head>
+        <meta charset="utf-8">
+        <meta name="description" content=""/>
+        <meta name="keywords" content=""/>
+
+        <!-- Mobile Specific Metas
+        +++++++++++++++++++++++++++ -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <link rel="shortcut icon" href="{{ asset("favicon.ico") }}">
+
+        {#<link rel="apple-touch-icon" href="img/apple_icons_57x57.png">#}
+        {#<link rel="apple-touch-icon" sizes="72x72" href="img/apple_icons_72x72.png">#}
+        {#<link rel="apple-touch-icon" sizes="114x114" href="img/apple_icons_114x114.png">#}
+
+        <link rel="apple-touch-icon" href="{{ asset("apple-touch-icon.png") }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset("apple-touch-icon.png") }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset("apple-touch-icon.png") }}">
+
+        <title>{% block title %}{% endblock %}</title>
+        
+        {% block stylesheets %}
+            {% stylesheets
+            "bundles/fpfe/css/bootstrap.min.css"
+            "bundles/fpfe/css/bootstrap-responsive.css"
+            filter="cssrewrite"
+            output="css/final_base"
+            %}
+            <link rel="stylesheet" type="text/css" href="{{ asset_url }}">
+            {% endstylesheets %}
+
+        {% endblock %}
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body class="{% block body_class %}{% endblock %}">
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            {% javascripts
+                "bundles/fpbe/js/jquery-1.10.2.min.js"
+                "bundles/fpbe/js/jquery-ui.min.js"
+                output="js/final_js_base.js"
+            %}
+                <script src="{{ asset_url }}" type="text/javascript"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>

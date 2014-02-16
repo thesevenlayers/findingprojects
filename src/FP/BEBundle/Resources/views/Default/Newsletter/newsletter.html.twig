@@ -1,0 +1,52 @@
+{% extends "FPBEBundle::layout.html.twig" %}
+
+{% block title %}Admin Panel - Newsletter{% endblock %}
+
+{% block content %}
+    <div class="clearfix"></div>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        {{ parent() }}
+        <!-- BEGIN PAGE -->
+        <div class="page-content">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                    <h3 class="page-title">
+                        Newsletter
+                    </h3>
+                    <ul class="page-breadcrumb breadcrumb">
+
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="{{ url("fp.be.home.get_list") }}">Home</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="{{ url("fp.be.newsletter.get_edit") }}">Newsletter</a>
+                        </li>
+
+                    </ul>
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+                </div>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+
+                {{ render_esi(controller("FPBEBundle:Newsletter:getPartialEditForm")) }}
+
+
+            <!-- END PAGE CONTENT-->
+        </div>
+        <!-- END PAGE -->
+    </div>
+    <!-- END CONTAINER -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts "bundles/fpbe/js/multi_delete.js" %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

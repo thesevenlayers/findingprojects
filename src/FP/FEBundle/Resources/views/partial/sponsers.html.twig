@@ -1,0 +1,20 @@
+{% if sponsers|length > 0 %}
+    <div class="container">
+        <div class="span12 module_cont module_partners container sponsor">
+            <div class="bg_title"><h3 class="headInModule">{{ heading }}</h3></div>
+            <div class="module_content sponsors_works carousel items4" data-count="4">
+                <ul>
+                    {% for sponser in sponsers %}
+                        <li>
+                            <div class="item">
+                                <a href="{{ asset(sponser.url) }}" target="_blank"><img src="{{ asset(sponser.getWebPath) }}" alt=""></a>
+                                {#<img src="{{ asset(sponser.getWebPath) }}"/>#}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <a id="anchor15"></a>
+        </div>
+    </div><!-- .row-fluid -->
+{% endif %}

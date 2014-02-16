@@ -1,0 +1,39 @@
+<p>
+    <span class="label label-danger">NOTE:</span>&nbsp;
+    Recommended Picture size is 1170 width × 470 height
+</p>
+
+<form action="{{ post_url }}" class="dropzone" id="mydropzone">
+    <div class="fallback">
+        <input name="file" type="file" multiple />
+    </div>
+</form>
+Drop photos below and then <button id="dropzone_btn" class="btn btn-danger" style="margin:10px 0;">Upload</button> (MAX: 10 photos per upload)
+{% if photos|length > 0 %}
+<div>
+    <h4 class="block">Manage Photos</h4>
+
+            <div class="row">
+                <div class="col-md-12  margin-top-20">
+                    {% for photo in photos %}
+                    <div class="col-md-3 col-sm-4 mix category_1">
+                        <div class="mix-inner">
+                            <img class="img-responsive" src="{{ asset(photo.getThumbWebPath) }}" alt="">
+                            <img class="delete-loader" style="display: none; position: absolute; top: 50%; left: 50%;  margin: -24px 0 0 -15px;" src="{{ asset("bundles/fpbe/img/loader.GIF") }}" alt="">
+                            <div class="mix-details">
+                                <div class="col-md-4 iconGroup">
+                                    <form style="width: 48px; display: block; float: none; margin: 0px auto;" action="{{ path(photo_delete_link, {id: photo.id}) }}" class="thumbnail-delete-form" method="post">
+                                        <a class="mix-preview fancybox-button" href="{{ asset(photo.getWebPath) }}" data-rel="fancybox-button"><i class="fa fa-search"></i></a>
+                                        <button class="mix-link btn-link thumbnail-delete" data-toggle="modal" href="{{ path(photo_delete_link, {id: photo.id}) }}"><li class="fa fa-trash-o"></li></button>
+                                    </form>
+                                </div><!--End ICon Group-->
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+        </div>
+    <div class="clearfix"></div>
+</div>
+{% endif %}

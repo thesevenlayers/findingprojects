@@ -1,0 +1,29 @@
+<?php
+namespace FP\BEBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use FP\BEBundle\Entity\Common\ImageUpload;
+
+/**
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="sponsers")
+ */
+class Sponsers
+{
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    protected $id;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setId()
+    {
+        $this->id = uniqid();
+    }
+
+}

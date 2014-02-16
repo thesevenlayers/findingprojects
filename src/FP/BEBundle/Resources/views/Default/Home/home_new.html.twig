@@ -1,0 +1,125 @@
+{% extends "FPBEBundle::layout.html.twig" %}
+
+{% block title %}Admin Panel - Home - New Item{% endblock %}
+
+{% block content %}
+    <div class="clearfix"></div>
+    <div class="page-container">
+        {{ parent() }}
+        <!-- BEGIN PAGE -->
+        <div class="page-content">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                    <h3 class="page-title">
+                        New Item
+                    </h3>
+                    <ul class="page-breadcrumb breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="{{ path("fp.be.home.get_list") }}">Home</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="">Add Item</a>
+                        </li>
+                    </ul>
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+                </div>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN EXTRAS PORTLET-->
+                    <div class="portlet box grey">
+                        <div class="portlet-title">
+                            <div class="caption"><i class="fa fa-briefcase"></i>Project Editors</div>
+                        </div>
+                        <div class="portlet-body form">
+                            <!-- BEGIN FORM-->
+                            {{ form_start(form, {"action": path("fp.be.home.post_new"), "attr":{"class":"item_form form-horizontal form-bordered"} }) }}
+                                 <div class="form-body">
+                                    <div class="form-group last">
+                                        {{ form_label(form.image_file, null, {"label_attr":{"class":"control-label col-md-3"} }) }}
+                                        <div class="col-md-9 img_crop">
+                                            <div style="max-width: 300px; height: auto; display: inline-block; min-width: 165px;" class="fileupload-new thumbnail imgUpload">
+                                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" id="banner_photo_preview">
+                                            </div>
+                                            <div>
+                                                {{ form_widget(form.image_file, {"attr":{"class":"image_upload_btn upload"}, "id":"banner_photo_btn" }) }}
+                                                <div style="color: red;font-weight: bold;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group last">
+                                        {{ form_label(form.artist_name, null, {"label_attr" : {"class": "control-label col-md-3"}}) }}
+                                        {#<label class="control-label  col-md-3">Artist Name</label>#}
+                                        <div class="col-md-9">
+                                            {{ form_widget(form.artist_name, {"attr": {"class": "form-control"} }) }}
+                                            {{ form_errors(form.artist_name) }}
+                                            {#<input class="form-control" type="text" />#}
+                                        </div>
+                                    </div>
+                                    <div class="form-group last">
+                                        {{ form_label(form.project_name, null, {"label_attr" : {"class": "control-label  col-md-3"}}) }}
+                                        {#<label class="control-label  col-md-3">Project Name</label>#}
+                                        <div class="col-md-9">
+                                            {{ form_widget(form.project_name, {"attr": {"class": "form-control"} }) }}
+                                            {{ form_errors(form.project_name) }}
+                                            {#<input class="form-control" type="text" />#}
+                                        </div>
+                                    </div>
+                                    <div class="form-group last">
+                                        {{ form_label(form.description, null, {"label_attr" : {"class": "control-label  col-md-3"}}) }}
+                                        {#<label class="control-label  col-md-3">Description</label>#}
+                                        <div class="col-md-9">
+                                            {{ form_widget(form.description, {"row": "6", "attr": {"class": "form-control"} }) }}
+                                            {{ form_errors(form.description) }}
+                                            {#<textarea class="ckeditor form-control" name="editor1" rows="6"></textarea>#}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="submit" class="btn green"><i class="fa fa-check"></i> Save</button>
+                                                <a type="button" class="btn default" href="{{ path("fp.be.home.get_list") }}">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ form_rest(form) }}
+                            {{ form_end(form) }}
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                    <!-- END EXTRAS PORTLET-->
+                </div>
+            </div>
+            <!-- END PAGE CONTENT-->
+        </div>
+        <!-- END PAGE -->
+    </div>
+    <!-- END CONTAINER -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset("bundles/fpbe/js/ImgCrop.js") }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var cropper = new ImgCrop({
+                wrapper_class: "img_crop",
+                form_class: "item_form",
+                input_class: "image_upload_btn",
+                image_class: "thumbnail",
+                crop: false
+            });
+            cropper.init();
+        })
+    </script>
+{% endblock %}

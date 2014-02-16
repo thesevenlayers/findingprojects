@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="fpbe.basic_domain_manager.class">FP\BEBundle\Services\DomainManagers\BasicDomainManager</parameter>
+        <parameter key="fpbe.basic_form_handler.class">FP\BEBundle\Services\FormHandlers\BasicFormHandler</parameter>
+        <parameter key="fpbe.form_type.ckeditor_custom.class">FP\BEBundle\Form\Types\CKEditorType</parameter>
+    </parameters>
+
+    <services>
+        <service id="fpbe.basic_domain_manager" class="%fpbe.basic_domain_manager.class%">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+        <service id="fpbe.basic_form_handler" class="%fpbe.basic_form_handler.class%">
+            <argument type="service" id="fpbe.basic_domain_manager"/>
+            <argument type="service" id="form.factory"/>
+        </service>
+
+        <service id="fpbe.form_type.ckeditor_custom" class="%fpbe.form_type.ckeditor_custom.class%">
+            <tag name="form.type" alias="ckeditor_custom" />
+        </service>
+    </services>
+</container>

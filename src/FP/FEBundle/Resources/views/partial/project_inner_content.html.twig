@@ -1,0 +1,93 @@
+<div class="content_wrapper">
+    <div class="page_title_block">
+        <div class="container">
+            <h1 class="title">{{ item.title }}</h1>
+            <div class="breadcrumbs"><a href="{{ path("fpfe_homepage") }}">Home</a><a href="{{ path("fpfe_projects_index") }}">Projects</a><span>{{ item.title }}</span></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content_block no-sidebar row">
+            <div class="fl-container span12">
+                <div class="row">
+                    <div class="posts-block span12">
+                        <div class="contentarea">
+
+                            <div class="row-fluid">
+                                <div class="span12 module_cont module_blog">
+
+                                    <div class="blog_post">
+                                        <div class="blog_head">
+                                            <div class="blogpost_meta">
+                                                <span>{{ item.createdAt|date("d M Y") }}</span>
+                                            </div>
+
+                                            <div class="blogpost_meta">
+                                                        <span>
+                                                            {% if item.artists|length > 0 %}
+                                                                {#<h6 class="artist_name">Creator:</h6>#}
+                                                                {% for artist in item.artists  %}
+                                                                    {% if artist.putLink == true %}
+                                                                        <a href="{{ url("fpfe_artists_display", {"id": artist.id}) }}">{{ artist.artistName }}</a> {% if loop.index < item.artists|length %} - {% endif %}
+                                                                    {% elseif artist.putLink == false %}
+                                                                        <a>{{ artist.artistName }}</a> {% if loop.index < item.artists|length %} - {% endif %}
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        </span>
+                                            </div>
+                                            <hr class="colored">
+                                        </div><!-- .blog_head -->
+                                        <div class="featured_image_full">
+                                            <div class="slider-wrapper theme-default">
+                                                <div class="nivoSlider">
+                                                    {% if item.photos|length > 0 %}
+                                                        {% for photo in item.photos %}
+                                                            <img src="{{ asset(photo.getWebPath) }}" data-thumb="{{ asset(photo.getThumbWebPath) }}" alt="" width="1170" height="470"/>
+                                                        {% endfor %}
+                                                    {% elseif item.video %}
+                                                        {#<img src="" alt="" width="384" height="272">#}
+                                                        {#<iframe width="853" height="480" src="//www.youtube.com/embed/{{ item.video }}" frameborder="0" allowfullscreen></iframe>#}
+                                                        <iframe src="//player.vimeo.com/video/{{ item.video }}" width="853" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                                    {% endif %}
+                                                </div>
+                                            </div><!-- .slider-wrapper  -->
+                                        </div><!-- .featured_image_full -->
+                                        <article class="contentarea">
+                                            {{ item.description|raw }}
+                                            {% for file in item.files %}
+                                                {% if file.getWebPath %}
+                                                    <div class="row-fluid">
+                                                        <a href="{{ asset(file.getWebPath) }}" target="_blank" class="shortcode_button btn_normal btn_type4">{{ file.getFileName|replace({".pdf" : ""}) }}</a>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                        </article>
+
+                                    </div><!--.blog_post_preview -->
+                                </div>
+                            </div><!-- .row-fluid -->
+
+
+                            <div class="row-fluid">
+                                <div class="span12 module_cont">
+                                    <a href="javascript:history.back()" class="btn_back">Back</a>
+                                </div>
+                            </div><!-- .row-fluid -->
+
+                        </div><!-- .contentarea -->
+                    </div>
+                    <div class="left-sidebar-block span3">
+
+                    </div><!-- .left-sidebar -->
+                </div>
+                <div class="clear"><!-- ClearFix --></div>
+            </div><!-- .fl-container -->
+            <div class="right-sidebar-block span3">
+                <aside class="sidebar">
+                </aside>
+            </div><!-- .right-sidebar -->
+            <div class="clear"><!-- ClearFix --></div>
+        </div>
+    </div><!-- .container -->
+</div><!-- .content_wrapper -->

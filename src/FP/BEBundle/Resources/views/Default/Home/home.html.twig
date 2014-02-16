@@ -1,0 +1,70 @@
+{% extends "FPBEBundle::layout.html.twig" %}
+
+{% block title %}Admin Panel - Home{% endblock %}
+
+{% block content %}
+    <div class="clearfix"></div>
+    <div class="page-container">
+        {{ parent() }}
+        <!-- BEGIN PAGE -->
+        <div class="page-content">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                    <h3 class="page-title">
+                        Home
+                    </h3>
+                    <ul class="page-breadcrumb breadcrumb">
+
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="">Home</a>
+                        </li>
+                    </ul>
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+                </div>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN EXTRAS PORTLET-->
+                    <div class="portlet box grey">
+                        <div class="portlet-title">
+                            <div class="caption caption2"><i class="fa fa-home"></i>Home Items</div>
+                            <a href="{{ url("fp.be.home.get_new") }}" class="btn blue pull-right btn-add" type="button"><i class="fa fa-pencil"></i>Add New Item</a>
+                        </div><!--Portlet Box Grey-->
+                        <div class="portlet-body form">
+                            <!-- BEGIN mix-grid-->
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12  margin-top-20">
+                                        {{ render_esi(controller("FPBEBundle:Home:getPartialHomeList")) }}
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- END Margin Top-->
+                                </div>
+                            </div>
+                            <!-- END mix-grid-->
+                        </div><!--Portlet Body-->
+                    </div>
+                    <!-- END EXTRAS PORTLET-->
+                </div>
+            </div>
+            <!-- END PAGE CONTENT-->
+        </div>
+        <!-- END PAGE -->
+    </div>
+    <!-- END CONTAINER -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function(){
+//            Portfolio.init();
+        })
+    </script>
+{% endblock %}

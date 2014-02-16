@@ -1,0 +1,50 @@
+{% extends "FPFEBundle::layout.html.twig" %}
+{% block title %}FindingProjects - Artist - Ahmed{% endblock %}
+
+{% block content %}
+    <div class="main_wrapper">
+    <!-- C O N T E N T -->
+    <div class="content_wrapper">
+    <div class="page_title_block">
+        <div class="container">
+
+            <div class="breadcrumbs"><a href="{{ path("fpfe_homepage") }}">Home</a><a href="{{ path("fpfe_artists_index") }}">Artists</a><span>{{ artist.artistName }}</span></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content_block no-sidebar row">
+            <div class="fl-container span12">
+                <div class="row">
+                    <div class="posts-block span12">
+                        <div class="contentarea">
+
+                            {{ render_esi(controller("FPFEBundle:partial/ArtistInner:getArtistInnerContent", {"id": artist.id})) }}
+
+                            <div class="row-fluid">
+                                <div class="span12 module_cont">
+                                    <a class="btn_back" href="javascript:history.back()">Back</a>
+                                </div>
+                            </div><!-- .row-fluid -->
+
+
+
+                        </div><!-- .contentarea -->
+                    </div>
+                    <div class="left-sidebar-block span3">
+                        //Sidebar Text
+                    </div><!-- .left-sidebar -->
+                </div>
+                <div class="clear"><!-- ClearFix --></div>
+            </div><!-- .fl-container -->
+            <div class="right-sidebar-block span3">
+                <aside class="sidebar">
+                </aside>
+            </div><!-- .right-sidebar -->
+            <div class="clear"><!-- ClearFix --></div>
+        </div>
+    </div><!-- .container -->
+    </div><!-- .content_wrapper -->
+
+    </div><!-- .main_wrapper -->
+
+{% endblock %}

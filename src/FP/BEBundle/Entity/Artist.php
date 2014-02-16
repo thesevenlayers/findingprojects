@@ -1,0 +1,305 @@
+<?php
+namespace FP\BEBundle\Entity;
+
+use FP\BEBundle\Entity\Common\ImageUpload;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="FP\BEBundle\Repository\ArtistRepository")
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="artists")
+ */
+class Artist extends ImageUpload
+{
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    protected $id;
+
+    protected $cat_dir = "artist";
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $artist_name;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Project")
+     */
+    protected $projects;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $age;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $location;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $url;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $biography;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $put_link = true;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $created_at;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setId($id)
+    {
+        $this->id = uniqid();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function checkURL()
+    {
+        if($this->url)
+        {
+            if(!preg_match('/^(http:)?\/\//', $this->url))
+            {
+                $this->url = "http://" . $this->url;
+            }
+        }
+    }
+
+    /**
+     * Get id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set artist_name
+     *
+     * @param string $artistName
+     * @return Artist
+     */
+    public function setArtistName($artistName)
+    {
+        $this->artist_name = $artistName;
+
+        return $this;
+    }
+
+    /**
+     * Get artist_name
+     *
+     * @return string
+     */
+    public function getArtistName()
+    {
+        return $this->artist_name;
+    }
+
+    /**
+     * Set age
+     *
+     * @param string $age
+     * @return Artist
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    /**
+     * Get age
+     *
+     * @return string
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     * @return Artist
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     * @return Artist
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set biography
+     *
+     * @param string $biography
+     * @return Artist
+     */
+    public function setBiography($biography)
+    {
+        $this->biography = $biography;
+
+        return $this;
+    }
+
+    /**
+     * Get biography
+     *
+     * @return string
+     */
+    public function getBiography()
+    {
+        return $this->biography;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->projects = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add projects
+     *
+     * @param \FP\BEBundle\Entity\Project $projects
+     * @return Artist
+     */
+    public function addProject(\FP\BEBundle\Entity\Project $projects)
+    {
+        $this->projects[] = $projects;
+
+        return $this;
+    }
+
+    /**
+     * Remove projects
+     *
+     * @param \FP\BEBundle\Entity\Project $projects
+     */
+    public function removeProject(\FP\BEBundle\Entity\Project $projects)
+    {
+        $this->projects->removeElement($projects);
+    }
+
+    /**
+     * Get projects
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * Set putLink
+     *
+     * @param boolean $putLink
+     * @return Artist
+     */
+    public function setPutLink($putLink)
+    {
+        $this->put_link = $putLink;
+
+        return $this;
+    }
+
+    /**
+     * Get putLink
+     *
+     * @return boolean 
+     */
+    public function getPutLink()
+    {
+        return $this->put_link;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->created_at = new \DateTime();
+    }
+
+
+    /**
+     * Set created_at
+     *
+     * @param \DateTime $createdAt
+     * @return Project
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+}

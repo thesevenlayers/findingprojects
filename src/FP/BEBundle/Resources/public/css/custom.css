@@ -1,0 +1,89 @@
+/* here you can put your own css to customize and override the theme */
+.logo{
+    padding-top: 7px;
+    padding-bottom: 0;
+}
+.header{
+    height: 50px !important;
+}
+.nav{
+    padding-top:5px ;
+}
+.upload {
+    color: #000000;
+    height: 34px;
+    margin: 10px 0;
+}
+.imgUpload{
+    max-width: 940px;
+    min-width: 200px;
+    display: inline-block;
+}
+.form-container {
+    height: 35px;
+    margin: 15px 20px;
+    padding-top: 7px;
+}
+.iconGroup{
+    float: none;
+    display: block;
+    margin: 0 auto;
+}
+.mix-details{
+    background: none repeat scroll 0 0 #F1F1F1;
+    padding: 10px;
+}
+.mix-details h4{
+    margin-top: 0;
+    font-size: 16px;
+}
+.mix{
+    margin-bottom: 10px;
+}
+.btn-add{
+    margin-top: 2px;
+}
+.validation{
+    color: red;
+    font-size: 12px;
+}
+.btnUpload
+{
+    min-width: 100px !important;
+}
+.portlet-title{
+    padding: 8px 10px !important;
+}
+.caption2{
+    margin-top:8px !important;
+}
+
+.mix-inner .img-responsive { width:100%}
+.mix-link, .mix-preview   { margin-left: 10px}
+.mix-details { min-height: 70px}
+.page-title{ display:inline}
+.form label{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    display: block;
+    font-family: 'Open Sans',sans-serif;
+
+}
+
+.form #fos_user_profile_form input, .form #fos_user_change_password_form input{
+    background-color: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 0;
+    box-shadow: none;
+    color: #333333;
+    font-size: 14px;
+    font-weight: normal;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    height: 34px;
+    line-height: 1.42857;
+    vertical-align: middle;
+    width: 100%;
+    padding: 6px 12px;
+    margin-bottom: 5px;
+}

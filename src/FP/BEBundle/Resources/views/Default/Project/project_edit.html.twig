@@ -1,0 +1,134 @@
+{% extends "FPBEBundle::layout.html.twig" %}
+
+{% block title %}Admin Panel - Project - Edit Item{% endblock %}
+
+{% block content %}
+    <div class="clearfix"></div>
+<div class="page-container">
+    {{ parent() }}
+    <!-- BEGIN PAGE -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                <h3 class="page-title">
+                    Edit Item
+                </h3>
+                <ul class="page-breadcrumb breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{{ path("fp.be.project.get_list") }}">Home</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a href="{{ url("fp.be.project.get_list") }}">Projects</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a href="">Edit Item</a>
+                    </li>
+                </ul>
+                <!-- END PAGE TITLE & BREADCRUMB-->
+            </div>
+        </div>
+        <!-- END PAGE HEADER-->
+        <!-- BEGIN PAGE CONTENT-->
+        {{ render(controller("FPBEBundle:Project:getPartialEditForm", {"item": item})) }}
+        <!-- END PAGE -->
+    </div>
+    <!-- END CONTAINER -->
+    {% endblock %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {% stylesheets
+        "bundles/fpbe/js/plugins/dropzone/css/dropzone.css"
+        "bundles/fpbe/css/jquery-ui.css"
+        filter="cssrewrite"
+        output="css/final_project"
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+        <link rel="stylesheet" href="{{ asset("bundles/fpbe/js/plugins/select2/select2.css") }}"/>
+
+    {% endblock %}
+
+    {% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        "bundles/fpbe/js/plugins/dropzone/dropzone.js"
+        "bundles/fpbe/js/dropzone_custom.js"
+        "bundles/fpbe/js/jquery-ui.min.js"
+        "bundles/fpbe/js/plugins/select2/select2.min.js"
+        "bundles/thraceform/js/select2.js"
+        "bundles/fpbe/js/ImgCrop.js"
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $("#btnVideo").click(function(e){
+                e.preventDefault();
+                $("#uploadVideo").show();
+                $("#uploadPhoto").hide();
+            });
+            $("#btnPhoto").click(function(e){
+                e.preventDefault();
+                $("#uploadPhoto").show();
+                $("#uploadVideo").hide();
+            });
+            // initiate layout and plugins
+
+            // initiate layout and plugins
+            $("#artists_tags").select2({
+                width: '100%',
+                tags: {{ artists_all|raw }},
+                createSearchChoice: function(term, data){
+                    if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length === 0)
+                    {
+                        return {id:term, text:term};
+                    }
+                }
+            });
+
+            var form_action = $(".tag-form").attr("action");
+
+            $('#artists_tags').select2('val', {{ artists|raw }});
+            $("#artists_tags").on("change", function(e){
+                var qs = [];
+                var data_arr = $("#artists_tags").select2("data");
+                for(var i = 0; i < data_arr.length; i++){
+                    qs.push("artists[]=" + encodeURI(data_arr[i]["text"]));
+                }
+                qs = qs.join("&");
+                $(".form-horizontal").attr("action", form_action + "?" + qs);
+            });
+
+            $(".page-content").on("click", ".delete_pdf", function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: "GET",
+                    url: $(e.target).attr("href"),
+                }).done(function(){
+                            $(e.target).parent().remove();
+                        });
+            });
+
+            var cropper = new ImgCrop({
+                wrapper_class: "img_crop",
+                form_class: "item_form",
+                input_class: "image_upload_btn",
+                image_class: "thumbnail",
+                crop: false
+            });
+            cropper.init();
+
+            App.init();
+            FormComponents.init();
+
+        })
+    </script>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <import resource="@FPBEBundle/Resources/config/Home/routing_home.xml" prefix="/" />
+    <import resource="@FPBEBundle/Resources/config/Project/routing_project.xml" prefix="/" />
+    <import resource="@FPBEBundle/Resources/config/Artist/routing_artist.xml" prefix="/" />
+    <import resource="@FPBEBundle/Resources/config/About/routing_about.xml" prefix="/" />
+    <import resource="@FPBEBundle/Resources/config/Newsletter/routing_newsletter.xml" prefix="/" />
+    <import resource="@FPBEBundle/Resources/config/Contact/routing_contact.xml" prefix="/" />
+    <import resource="@FPBEBundle/Resources/config/Sponser/routing_sponser.xml" prefix="/" />
+
+
+</routes>

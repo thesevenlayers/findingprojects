@@ -1,0 +1,153 @@
+{{ form_start(form, {"action":path("fp.be.contact.post_edit_form"), "attr":{"class":"form-horizontal form-bordered about_form"} }) }}
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXTRAS PORTLET-->
+        <div class="portlet box grey">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-envelope-o"></i>Contacts Editors</div>
+            </div>
+
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                {#<form action="#" class="form-horizontal form-bordered">#}
+                    <div class="form-body">
+                        <div class="form-group last">
+                            {{ form_label(form.address, null, {"label_attr":{"class":"control-label col-md-3"} }) }}
+                            <div class="col-md-9">
+                                {{ form_widget(form.address, {"attr":{"class":"form-control"} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group last">
+                            {{ form_label(form.phone, null, {"label_attr":{"class":"control-label col-md-3"} }) }}
+
+                            {#<label class="control-label  col-md-3">Phone</label>#}
+                            <div class="col-md-9">
+                                {#<input class="form-control"  type="text" />#}
+                                {{ form_widget(form.phone, {"attr":{"class":"form-control"} }) }}
+                                {#<span class="validation">Please correct the error</span>#}
+                            </div>
+                        </div>
+                        <div class="form-group last">
+                            {{ form_label(form.email, null, {"label_attr":{"class":"control-label col-md-3"} }) }}
+
+                            {#<label class="control-label  col-md-3">Email</label>#}
+                            <div class="col-md-9">
+                                {{ form_widget(form.email, {"attr":{"class":"form-control"} }) }}
+
+                                {#<input class="form-control" type="text" />#}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn green"><i class="fa fa-check"></i> Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                {#</form>#}
+                <!-- END FORM-->
+            </div>
+            {#{{ form_rest(form) }}#}
+            {#{{ form_end(form) }}#}
+        </div>
+        <!-- END EXTRAS PORTLET-->
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXTRAS PORTLET-->
+        <div class="portlet box grey">
+            <div class="portlet-title">
+                <div class="caption">Social Networks</div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                {{ form_start(form, {"action":path("fp.be.contact.post_edit_form"), "attr":{"class":"form-horizontal form-bordered about_form"} }) }}
+
+                {#<form action="#" class="form-horizontal form-bordered">#}
+                    <div class="form-body">
+                        <div class="form-group last">
+                            {{ form_label(form.facebook, null, {"label_attr":{"class":"control-label col-md-3"} }) }}
+
+                            {#<label class="control-label  col-md-3">Facebook Link</label>#}
+                            <div class="col-md-9">
+                                {{ form_widget(form.facebook, {"attr":{"class":"form-control"} }) }}
+                                {#<input class="form-control"  type="text" />#}
+                            </div>
+                        </div>
+                        <div class="form-group last">
+                            {{ form_label(form.vimeo, null, {"label_attr":{"class":"control-label col-md-3"} }) }}
+
+                            {#<label class="control-label  col-md-3">Vimeo Link</label>#}
+                            <div class="col-md-9">
+                                {{ form_widget(form.vimeo, {"attr":{"class":"form-control"} }) }}
+                                {#<input class="form-control"  type="text" />#}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn green"><i class="fa fa-check"></i> Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {#{{ form_rest(form) }}#}
+                {#{{ form_end(form) }}#}
+                {#</form>#}
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END EXTRAS PORTLET-->
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXTRAS PORTLET-->
+        <div class="portlet box grey">
+            <div class="portlet-title">
+                <div class="caption">Map</div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                {#<form action="#" class="form-horizontal form-bordered">#}
+                {{ form_start(form, {"action":path("fp.be.contact.post_edit_form"), "attr":{"class":"form-horizontal form-bordered about_form"} }) }}
+
+                    <div class="form-body">
+                        <div class="form-group last">
+                            {{ form_label(form.zip, null, {"label_attr":{"class":"control-label col-md-3"} }) }}
+
+                            {#<label class="control-label  col-md-3">Zip code</label>#}
+                            <div class="col-md-9">
+                                {{ form_widget(form.zip, {"attr":{"class":"form-control"} }) }}
+                                {#<input class="form-control"  type="text" />#}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn green"><i class="fa fa-check"></i> Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {#{{ form_rest(form) }}#}
+                    {#{{ form_end(form) }}#}
+                {#</form>#}
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END EXTRAS PORTLET-->
+    </div>
+</div>
+    {{ form_rest(form) }}
+{{ form_end(form) }}

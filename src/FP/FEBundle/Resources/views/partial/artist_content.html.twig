@@ -1,0 +1,18 @@
+<div class="list-of-images images_in_a_row_3">
+    {% for item in items %}
+        {% if item.putLink %}
+        <div class="gallery_item">
+            <a href="{{ url("fpfe_artists_display", {"id": item.id}) }}">
+                <img height="210" width="270" alt="" src="{{ item.getWebPath ? asset(item.getWebPath) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" }}" class="gallery-stand-img">
+                <div class="gallery_fadder"></div>
+                <div class="ico_gallery" style="top: 40.5px;"></div><!-- .ico_gallery -->
+                <div class="gallery_descr" style="bottom: -270px;">
+                    <h6 class="gallery_title">{{ item.artistName }}</h6>
+
+                </div>
+            </a>
+        </div><!-- .gallery_item -->
+        {% endif %}
+    {% endfor %}
+    <div class="clear"></div>
+</div>

@@ -1,0 +1,15 @@
+<div class="footer_line container">
+    <div class="socials">
+        <ul class="socials_list">
+            {% if contact.facebook %}
+                <li><a href="{{ contact.facebook }}" class="ico_social-facebook"></a></li>
+            {% endif %}
+            {% if contact.vimeo %}
+                <li><a href="{{ contact.vimeo }}" class="ico_social-vimeo"></a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+    <div class="copyright">&copy; 2013 Finding Projects Association. All Rights Reserved.</div>
+    <div class="clear"></div>
+</div>

@@ -1,0 +1,34 @@
+{{ form_start(form, {"action":path("fp.be.about.post_edit_form"), "attr":{"class":"form-horizontal form-bordered about_form"} }) }}
+    <div class="form-body">
+        <div class="form-group last">
+            {{ form_label(form.image_file, null, {"label_attr":{"class":"control-label col-md-3"} }) }}
+            <div class="col-md-9 img_crop">
+                <div style="max-width: 600px; height: auto; display: inline-block; min-width: 197px;" class="fileupload-new thumbnail imgUpload">
+                    <img src="{{ about.getWebPath ? asset(about.getWebPath) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" }}" alt="" id="banner_photo_preview" style="height: auto;">
+                </div>
+                <div>
+                    {{ form_widget(form.image_file, {"attr":{"class":"image_upload_btn upload"}, "id":"banner_photo_btn" }) }}
+                    <div style="color: red;font-weight: bold;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group last">
+            {{ form_label(form.description, null , {"label_attr":{"class": "control-label col-md-3"} }) }}
+            <div class="col-md-9">
+                {{ form_widget(form.description, {"attr":{"class":"form-control"} }) }}
+            </div>
+        </div>
+    </div>
+    <div class="form-actions fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> Save</button>
+                    {#{{ form_widget(form.submit, {"attr":{"class": "btn green"} } ) }}#}
+                    <a href="{{ path("fp.be.about.get_edit") }}" type="button" class="btn default">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_rest(form) }}
+{{ form_end(form) }}

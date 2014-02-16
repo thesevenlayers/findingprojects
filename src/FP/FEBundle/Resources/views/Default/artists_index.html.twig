@@ -1,0 +1,47 @@
+{% extends "FPFEBundle::layout.html.twig" %}
+{% block title %}FindingProjects - All Artists{% endblock %}
+
+{% block content %}
+    <div class="main_wrapper">
+        <!-- C O N T E N T -->
+        <div class="content_wrapper">
+            <div class="page_title_block">
+                <div class="container">
+                    <h1 class="title">Our Artists</h1>
+                    <div class="breadcrumbs"><a href="{{ path("fpfe_homepage") }}">Home</a><span>Artists</span></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="content_block no-sidebar row">
+                    <div class="fl-container span12">
+                        <div class="row">
+                            <div class="posts-block span12">
+                                <div class="contentarea">
+
+                                    <div class="row-fluid">
+                                        <div class="span12 module_cont module_gallery">
+                                            {{ render_esi(controller("FPFEBundle:partial/ArtistPartial:getArtistContent")) }}
+                                            <a id="anchor6"></a>
+                                        </div><!-- .module_cont -->
+                                    </div>
+
+                                </div><!-- .contentarea -->
+                            </div>
+                            <div class="left-sidebar-block span3">
+                                //Sidebar Text
+                            </div><!-- .left-sidebar -->
+                        </div>
+                        <div class="clear"><!-- ClearFix --></div>
+                    </div><!-- .fl-container -->
+                    <div class="right-sidebar-block span3">
+                        <aside class="sidebar">
+                        </aside>
+                    </div><!-- .right-sidebar -->
+                    <div class="clear"><!-- ClearFix --></div>
+                </div>
+            </div><!-- .container -->
+        </div><!-- .content_wrapper -->
+
+    </div><!-- .main_wrapper -->
+
+{% endblock %}

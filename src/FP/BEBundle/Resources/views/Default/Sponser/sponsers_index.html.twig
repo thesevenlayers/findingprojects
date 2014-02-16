@@ -1,0 +1,88 @@
+{% extends "FPBEBundle::layout.html.twig" %}
+
+{% block title %}Admin Panel - Sponsers{% endblock %}
+
+{% block content %}
+    <div class="clearfix"></div>
+<div class="page-container">
+    {{ parent() }}
+    <!-- BEGIN PAGE -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                <h3 class="page-title">
+                    Sponsers
+                </h3>
+                <ul class="page-breadcrumb breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{{ path("fp.be.home.get_list") }}">Home</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a href="#">Sponsers</a>
+                    </li>
+                </ul>
+                <!-- END PAGE TITLE & BREADCRUMB-->
+            </div>
+        </div>
+        <!-- END PAGE HEADER-->
+        <!-- BEGIN PAGE CONTENT-->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXTRAS PORTLET-->
+                <div class="portlet box grey">
+                    <div class="portlet-title">
+                        <div class="caption caption2"><i class="fa fa-dollar"></i>Sponsers</div>
+                        <a href="{{ url("fp.be.sponser.get_add") }}" class="btn blue pull-right btn-add" type="button"><i class="fa fa-pencil"></i>Add New Item</a>
+                    </div><!--Portlet Box Grey-->
+                    <div class="portlet-body form">
+                        <!-- BEGIN mix-grid-->
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12  margin-top-20">
+                                    {{ render(controller("FPBEBundle:Sponser:getPartialSponsersList", {"sponsers": items})) }}
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!-- END Margin Top-->
+                            </div>
+                        </div>
+                        <!-- END mix-grid-->
+                    </div><!--Portlet Body-->
+                </div>
+                <!-- END EXTRAS PORTLET-->
+            </div>
+        </div>
+        <!-- END PAGE -->
+    </div>
+    <!-- END CONTAINER -->
+    {% endblock %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {% stylesheets
+        "bundles/fpbe/js/plugins/dropzone/css/dropzone.css"
+        filter="cssrewrite"
+        output="css/final_project"
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    "bundles/fpbe/js/plugins/dropzone/dropzone.js"
+    "bundles/fpbe/js/dropzone_custom.js"
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            App.init();
+        })
+    </script>
+
+{% endblock %}

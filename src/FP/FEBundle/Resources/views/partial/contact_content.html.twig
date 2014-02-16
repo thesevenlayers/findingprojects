@@ -1,0 +1,97 @@
+<div class="fullscreen_block">
+    <div class="fullscreen_title"><h1>Contact Us</h1></div>
+
+    <div class="fullscreen_content_wrapper">
+        <div class="fs_map fullscreen_container" id="map_wrapper">
+
+        </div>
+    </div>
+
+    <div class="fullscreen_content">
+        <a href="javascript:void(0)" class="content_toggle"><span class="collapse">Collapse</span><span class="show">Collapse</span></a>
+        <div class="fullscreen_content_padding">
+            <div class="row-fluid">
+                <div class="span12 module_cont module_contact_info module_none_padding">
+                    <p><span>Address:</span>{{ contact.address }}</p>
+                    <p><span>Phone:</span>{{ contact.phone }}</p>
+                    <p><span>Email:</span> <a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
+
+                </div>
+            </div><!-- .row-fluid -->
+
+            <div class="row-fluid">
+                <div class="span12 module_cont module_contact_icons module_small_padding1">
+                    {% if contact.facebook %}
+                        <a href="{{ contact.facebook }}" class="ico_socialize_facebook1 ico_socialize type1"></a>
+                    {% endif %}
+
+                    {% if contact.vimeo %}
+                        <a href="{{ contact.vimeo }}" class="ico_socialize_vimeo ico_socialize type1"></a>
+                    {% endif %}
+
+                </div>
+            </div><!-- .row-fluid -->
+
+            <div class="span3 news_letter">
+                <div class="sidepanel widget_mailchimpsf_widget">
+                    <div class="bg_title">
+                        <h3 class="sidebar_header">Newsletter</h3>
+                    </div>
+                    {{ newsletter.description|raw }}
+
+                    {{ form_start(form, {"action": path("fp.be.newsletter.post_newsletter_email", {"id": newsletter.id})}) }}
+                    <div class="mc_form_inside">
+                        <div class="mc_merge_var">
+                            {{ form_label(form.address) }}
+                            {#<label>Email address:</label>#}
+                            {{ form_widget(form.address, {"attr": {"class" : "mc_input"}}) }}
+                            {#<input type="text" class="mc_input" id="mc_mv_EMAIL2" name="mc_mv_EMAIL" value="" title="" size="18">#}
+                        </div><!-- /mc_merge_var -->
+                        <div class="mc_signup_submit">
+                            <input type="submit" class="mc_submit" value="Subscribe Now!" id="mc_signup_submit2" name="mc_signup_submit">
+                        </div><!-- /mc_signup_submit -->
+                    </div>
+                        {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div><!-- .sidepanel -->
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script type="text/javascript">
+
+    window.onload = initialize_map()
+
+
+    var geocoder;
+    var map;
+    function initialize_map() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var mapOptions = {
+            zoom: 8,
+            center: latlng
+        }
+        map = new google.maps.Map(document.getElementById('map_wrapper'), mapOptions);
+        codeAddress("{{ contact.zip }}");
+    }
+
+    function codeAddress(zipCode) {
+        geocoder.geocode( { 'address': zipCode}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                console.log('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+
+</script>

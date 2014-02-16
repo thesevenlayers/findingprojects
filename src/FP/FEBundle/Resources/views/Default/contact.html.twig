@@ -1,0 +1,12 @@
+{% extends "FPFEBundle::layout.html.twig" %}
+{% block title %}FindingProjects - Contact{% endblock %}
+
+{% block content %}
+   {{ render_esi(controller("FPFEBundle:partial/ContactPartial:getContactContent")) }}
+{% endblock %}
+
+{% block footer %}{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock %}

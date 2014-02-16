@@ -1,0 +1,18 @@
+<div class="fullscreen_block"></div>
+
+<script>
+    gallery_set =
+            [
+                {%  for item in items %}
+                    {
+                        image : "{{ asset(item.getWebPath) }}",
+                        thmb : "{{ asset(item.getThumbWebPath) }}",
+                        alt : '{{ item.imageName }}',
+                        fit : 'cover',
+                        title : '{{ item.projectName }}',
+                        description: '{{ item.description }}'
+                    },
+                {% endfor %}
+            ];
+
+</script>

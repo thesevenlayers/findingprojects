@@ -1,0 +1,44 @@
+{% for item in items %}
+    <div class="col-md-3 col-sm-4 mix">
+        <div class="mix-inner">
+		<div class="imgList">
+            <img class="img-responsive" src="{{ item.getWebPath ? asset(item.getWebPath) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" }}" alt="">
+		</div>
+            <div class="mix-details">
+                <h4>{{ item.artistName }}</h4>
+                <div class="iconGroup">
+                    <a href="{{ path("fp.be.home.get_edit", {"id": item.id}) }}" class="mix-link pull-left btnRight">
+                        <i class="fa fa-edit"></i></a>
+                    {#<form action="{{ path("fp.be.home.delete", {"id": item.id }) }}" method="post">#}
+                         {{ form_start(delete_form, {"action": path("fp.be.home.delete", {"id": item.id }), "attr": {"class": "pull-left btnRight"}, "method":"POST" } ) }}
+                        <a href="#{{ item.id }}" class="mix-link" data-toggle="modal">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                        <div class="modal fade" id="{{ item.id }}" tabindex="-1" role="basic" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn red"><i class="fa fa-trash-o"></i> Delete</button>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        {{ form_rest(delete_form) }}
+                    {{ form_end(delete_form) }}
+                    {% if item.getWebPath %}
+                        <a class="mix-preview pull-left btnRight fancybox-button" href="{{ asset(item.getWebPath) }}" title="{{ item.projectName }}" data-rel="fancybox-button"><i class="fa fa-search"></i></a>
+                    {% endif %}
+                </div><!--End ICon Group-->
+            </div>
+        </div>
+    </div>
+{% endfor %}

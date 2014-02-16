@@ -1,0 +1,111 @@
+{% extends "FPBEBundle::layout.html.twig" %}
+
+{% block title %}Admin Panel - Sponsers{% endblock %}
+
+{% block content %}
+    <div class="clearfix"></div>
+    <div class="page-container">
+        {{ parent() }}
+        <!-- BEGIN PAGE -->
+        <div class="page-content">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                    <h3 class="page-title">
+                        Sponsers
+                    </h3>
+                    <ul class="page-breadcrumb breadcrumb">
+
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="{{ url("fp.be.home.get_list") }}">Home</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="{{ url("fp.be.sponser.get_list") }}">Sponsers</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="">New</a>
+                        </li>
+
+                    </ul>
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+                </div>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN EXTRAS PORTLET-->
+                    <div class="portlet box grey">
+                        <div class="portlet-title">
+                            <div class="caption"><i class="fa fa-group"></i>Sponsers</div>
+                        </div>
+                        <div class="portlet-body form">
+                            <!-- BEGIN FORM-->
+                            {{ form_start(form, {"action":path("fp.be.sponser.post_add"), "attr":{"class":"form-horizontal form-bordered about_form"} }) }}
+                            <div class="form-body">
+                                <div class="form-group last">
+                                    {{ form_label(form.image_file, null, {"label_attr":{"class":"control-label col-md-3"} }) }}
+                                    <div class="col-md-9 img_crop">
+                                        <div style="max-width: 600px; height: auto; display: inline-block; min-width: 197px;" class="fileupload-new thumbnail imgUpload">
+                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" id="banner_photo_preview" style="height: auto;">
+                                        </div>
+                                        <div>
+                                            {{ form_widget(form.image_file, {"attr":{"class":"image_upload_btn upload"}, "id":"banner_photo_btn" }) }}
+                                            <div style="color: red;font-weight: bold;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group last">
+                                    {{ form_label(form.url, null , {"label_attr":{"class": "control-label col-md-3"} }) }}
+                                    <div class="col-md-9">
+                                        {{ form_widget(form.url, {"attr":{"class":"form-control"} }) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <button type="submit" class="btn green"><i class="fa fa-check"></i> Save</button>
+                                            {#{{ form_widget(form.submit, {"attr":{"class": "btn green"} } ) }}#}
+                                            <a href="{{ path("fp.be.sponser.get_list") }}" type="button" class="btn default">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ form_rest(form) }}
+                            {{ form_end(form) }}
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                    <!-- END EXTRAS PORTLET-->
+                </div>
+            </div>
+            <!-- END PAGE CONTENT-->
+        </div>
+        <!-- END PAGE -->
+    </div>
+    <!-- END CONTAINER -->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset("bundles/fpbe/js/ImgCrop.js") }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var cropper = new ImgCrop({
+                wrapper_class: "img_crop",
+                form_class: "about_form",
+                input_class: "image_upload_btn",
+                image_class: "thumbnail",
+                crop: false
+            });
+            cropper.init();
+        })
+    </script>
+{% endblock %}

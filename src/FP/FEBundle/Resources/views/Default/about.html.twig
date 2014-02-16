@@ -1,0 +1,24 @@
+{% extends "FPFEBundle::layout.html.twig" %}
+{% block title %}FindingProjects - About{% endblock %}
+{% block content %}
+    <div class="main_wrapper">
+    <!-- C O N T E N T -->
+    <div class="content_wrapper">
+        <div class="page_title_block">
+            <div class="container">
+                <h1 class="title">About</h1>
+                <div class="breadcrumbs"><a href="{{ path("fpfe_homepage") }}">Home</a><span>About</span></div>
+            </div>
+        </div>
+        <div class="container">
+            {{ render_esi(controller("FPFEBundle:partial/AboutPartial:getAboutContent")) }}
+        </div><!-- .container -->
+    </div><!-- .content_wrapper -->
+
+</div><!-- .main_wrapper -->
+{% endblock %}
+
+{% block footer %}
+    {{ render_esi(controller("FPFEBundle:partial/SponserPartial:getSponsers")) }}
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="fp.be.sponser.get_list" pattern="/sponsers" methods="GET">
+        <default key="_controller">FPBEBundle:Sponser:getList</default>
+    </route>
+
+    <route id="fp.be.sponser.get_add" pattern="/sponsers/add" methods="GET">
+        <default key="_controller">FPBEBundle:Sponser:getAdd</default>
+    </route>
+
+    <route id="fp.be.sponser.post_add" pattern="/sponsers/add" methods="POST">
+        <default key="_controller">FPBEBundle:Sponser:postAdd</default>
+    </route>
+
+    <route id="fp.be.sponser.get_edit" pattern="/sponsers/{id}/edit" methods="GET">
+        <default key="_controller">FPBEBundle:Sponser:getEdit</default>
+    </route>
+
+    <route id="fp.be.sponser.post_edit" pattern="/sponsers/{id}/edit" methods="POST">
+        <default key="_controller">FPBEBundle:Sponser:postEdit</default>
+    </route>
+
+    <route id="fp.be.sponser.delete" pattern="/sponsers/{id}/delete" methods="POST">
+        <default key="_controller">FPBEBundle:Sponser:postDeleteSponser</default>
+    </route>
+
+</routes>

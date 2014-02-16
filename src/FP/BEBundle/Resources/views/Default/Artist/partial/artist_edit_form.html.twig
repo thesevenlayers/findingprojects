@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXTRAS PORTLET-->
+        <div class="portlet box grey">
+            <div class="portlet-title">
+                <div class="caption"><i class="fa fa-briefcase"></i>Artist Editors</div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                {{ form_start(edit_form, {"action": path("fp.be.artist.post_edit", {"id": item.id}), "attr":{"class":"item_form form-horizontal form-bordered"} }) }}
+                <div class="form-body">
+                    <div class="form-group last">
+                        {{ form_label(edit_form.image_file, null, {"label_attr":{"class":"control-label col-md-3"} }) }}
+                        <div class="col-md-9 img_crop">
+                            <div style="max-width: 600px; height: auto; display: inline-block; min-width: 165px;" class="fileupload-new thumbnail imgUpload">
+                                <img src="{{ item.getWebPath ? asset(item.getWebPath) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" }}" alt="" id="banner_photo_preview" style="height: auto;">
+                            </div>
+                            <p class="help-block">
+                                <span class="label label-sm label-danger">Note:</span>
+                                Attached image Width 200PX  Height 300px
+                            </p>
+                            <div>
+                                {{ form_widget(edit_form.image_file, {"attr":{"class":"image_upload_btn upload"}, "id":"banner_photo_btn" }) }}
+                                <div style="color: red;font-weight: bold;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        {{ form_label(edit_form.artist_name, null, {"label_attr" : {"class": "control-label col-md-3"}}) }}
+                        {#<label class="control-label  col-md-3">Artist Name</label>#}
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.artist_name, {"attr": {"class": "form-control"} }) }}
+                            {{ form_errors(edit_form.artist_name) }}
+                            {#<input class="form-control" type="text" />#}
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        {{ form_label(edit_form.age, null, {"label_attr" : {"class": "control-label  col-md-3"}}) }}
+                        {#<label class="control-label  col-md-3">Project Name</label>#}
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.age, {"attr": {"class": "form-control"} }) }}
+                            {{ form_errors(edit_form.age) }}
+                            {#<input class="form-control" type="text" />#}
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        {{ form_label(edit_form.location, null, {"label_attr" : {"class": "control-label  col-md-3"}}) }}
+                        {#<label class="control-label  col-md-3">Description</label>#}
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.location, {"row": "6", "attr": {"class": "form-control"} }) }}
+                            {{ form_errors(edit_form.location) }}
+                            {#<textarea class="ckeditor form-control" name="editor1" rows="6"></textarea>#}
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        {{ form_label(edit_form.url, null, {"label_attr" : {"class": "control-label  col-md-3"}}) }}
+                        {#<label class="control-label  col-md-3">Description</label>#}
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.url, {"row": "6", "attr": {"class": "form-control"} }) }}
+                            {{ form_errors(edit_form.url) }}
+                            {#<textarea class="ckeditor form-control" name="editor1" rows="6"></textarea>#}
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        {{ form_label(edit_form.biography, null, {"label_attr" : {"class": "control-label  col-md-3"}}) }}
+                        {#<label class="control-label  col-md-3">Description</label>#}
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.biography, {"row": "6", "attr": {"class": "form-control"} }) }}
+                            {{ form_errors(edit_form.biography   ) }}
+                            {#<textarea class="ckeditor form-control" name="editor1" rows="6"></textarea>#}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn green"><i class="fa fa-check"></i> Save</button>
+                                <a type="button" class="btn default" href="{{ path("fp.be.artist.get_list") }}">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ form_rest(edit_form) }}
+                {{ form_end(edit_form) }}
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END EXTRAS PORTLET-->
+    </div>
+</div>

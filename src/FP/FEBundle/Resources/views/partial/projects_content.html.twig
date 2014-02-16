@@ -1,0 +1,34 @@
+<div class="portfolio_block image-grid fs_grid_module" id="list">
+
+    {% for item in items %}
+        <div data-category="portraits" class="grid_gallery-item portraits element">
+            <div class="filter_img gallery_item">
+                <a href="{{ url("fpfe_projects_display", {"id": item.id}) }}">
+                    {% if item.photos|length > 0 %}
+                        <img src="{{ item.firstPhoto.getWebPath ? asset(item.firstPhoto.getWebPath) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" }}" alt="" width="384" height="272">
+                    {% elseif item.video %}
+                        <img src="{{ video_image_urls[item.id] }}" alt="" width="384" height="272">
+                    {% else %}
+                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" alt="" width="384" height="272">
+                    {% endif %}
+                    <div class="gallery_fadder"></div>
+                    <div class="ico_gallery"></div><!-- .ico_gallery -->
+                    <div class="gallery_descr">
+                        <h6 class="gallery_title">{{ item.title }}</h6>
+                        <p>{{ item.description[0:127]|raw }}..</p>
+                    </div>
+                </a>
+            </div>
+        </div><!-- .grid_gallery-item -->
+    {% endfor %}
+
+</div><!-- .portfolio_block -->
+<div class="clear"></div>
+<div class="load_more_cont"><a href="javascript:void(0)" class="btn_load_more_fs get_portfolio_works_btn">Load more Works!<span></span></a></div>
+<script>
+    items_set = [	//Gallery Data
+        {% for item in items %}
+            {src : 'img/gallery/gallery_grid1-1.jpg', url : 'portfolio_post_fw.html', post_type : 'image', category: 'portraits', title : '{{ item.title }}', description: '{{ item.description }}'},
+        {% endfor %}
+    ];
+</script>

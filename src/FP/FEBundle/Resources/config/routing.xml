@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="fpfe_homepage" pattern="/home">
+        <default key="_controller">FPFEBundle:Default:home</default>
+    </route>
+
+
+    <route id="fpfe_homepage2" pattern="/">
+        <default key="_controller">FrameworkBundle:Redirect:redirect</default>
+        <default key="route">fpfe_homepage</default>
+        <default key="permanent">true</default>
+    </route>
+
+    <route id="fpfe_about" pattern="/about">
+        <default key="_controller">FPFEBundle:Default:about</default>
+    </route>
+
+    <route id="fpfe_projects_index" pattern="/projects">
+        <default key="_controller">FPFEBundle:Default:projects</default>
+    </route>
+
+    <route id="fpfe_projects_display" pattern="/projects/{id}">
+        <default key="_controller">FPFEBundle:Default:projectDisplay</default>
+    </route>
+
+    <route id="fpfe_artists_index" pattern="/artists">
+        <default key="_controller">FPFEBundle:Default:artists</default>
+    </route>
+
+    <route id="fpfe_artists_display" pattern="/artists/{id}">
+        <default key="_controller">FPFEBundle:Default:artistDisplay</default>
+    </route>
+
+    <route id="fpfe_contact" pattern="/contact">
+        <default key="_controller">FPFEBundle:Default:contact</default>
+    </route>
+
+</routes>
+
+

@@ -1,0 +1,37 @@
+{% extends "FPFEBundle::layout.html.twig"%}
+
+{% block stylesheets %}
+{% stylesheets
+"bundles/fpfe/css/bootstrap-responsive.css"
+"bundles/fpfe/css/theme.css"
+"bundles/fpfe/css/skin.css"
+"bundles/fpfe/css/fs_gllaery.css"
+"bundles/fpfe/css/plugins.css"
+"bundles/fpfe/css/responsive.css"
+"bundles/fpfe/css/theme_settings.css"
+output="css/final_fe_layout.css"
+filter="cssrewrite"
+%}
+<link rel="stylesheet" type="text/css" href="{{ asset_url }}">
+{% endstylesheets %}
+
+<link rel="stylesheet" type="text/css" href="{{ asset("bundles/fpfe/css/color_theme.css") }}" id="theme_color">
+<link rel="stylesheet" type="text/css" href="{{ asset("bundles/fpfe/css/ie_css.css") }}">
+
+{% endblock %}
+{% block content %}
+    {{ render_esi(controller("FPFEBundle:partial/HomePartial:getHomeContent")) }}
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+    <script type="text/javascript">
+    $('body').fs_gallery({
+    fx : 'fade', /*fade, zoom, slide_left, slide_right, slide_top, slide_bottom*/
+    slide_time : 3300, /*This time must be < then time in css*/
+    slides : gallery_set
+    });
+    </script>
+{% endblock %}

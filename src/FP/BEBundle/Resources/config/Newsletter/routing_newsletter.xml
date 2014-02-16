@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="fp.be.newsletter.get_edit" pattern="/newsletter" methods="GET">
+        <default key="_controller">FPBEBundle:Newsletter:getEdit</default>
+    </route>
+
+    <route id="fp.be.newsletter.post_edit" pattern="/newsletter" methods="POST">
+        <default key="_controller">FPBEBundle:Newsletter:postEditForm</default>
+    </route>
+
+    <route id="fp.be.newsletter.post_newsletter_email" pattern="/newsletter/{id}/email" methods="POST">
+        <default key="_controller">FPBEBundle:Newsletter:postEmail</default>
+    </route>
+
+    <route id="fp.be.newsletter.delete_newsletter_email" pattern="/newsletter/email/delete" methods="POST">
+        <default key="_controller">FPBEBundle:Newsletter:postEmailsDelete</default>
+    </route>
+
+    <route id="fp.be.newsletter.email_to_text" pattern="/newsletter/{id}/email/text" methods="GET">
+        <default key="_controller">FPBEBundle:Newsletter:getGenerateEmailText</default>
+    </route>
+
+</routes>
