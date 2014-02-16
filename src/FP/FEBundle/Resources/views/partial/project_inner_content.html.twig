@@ -57,7 +57,7 @@
                                             {% for file in item.files %}
                                                 {% if file.getWebPath %}
                                                     <div class="row-fluid">
-                                                        <a href="{{ asset(file.getWebPath) }}" target="_blank" class="shortcode_button btn_normal btn_type4">{{ file.getFileName|replace({".pdf" : ""}) }}</a>
+                                                        <a href="{{ asset(file.getWebPath) }}" target="_blank" class="shortcode_button btn_normal btn_type4">{{ file.getFileName|replace({".pdf" : "", ".txt" : "", ".docx" : "", ".doc" : "", ".rtf" : ""}) }}</a>
                                                     </div>
                                                 {% endif %}
                                             {% endfor %}
