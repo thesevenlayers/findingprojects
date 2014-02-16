@@ -21,6 +21,12 @@ class Artist extends ImageUpload
 
     protected $cat_dir = "artist";
 
+    protected $thumb_dir = "thumbs";
+
+    protected $thumb_w = 200;
+
+    protected $thumb_h = 150;
+
     /**
      * @ORM\Column(type="text", nullable=true)
      */
