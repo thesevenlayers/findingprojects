@@ -14,7 +14,7 @@ class ArtistType extends AbstractType
             ->add("artist_name", "text", array("required" => false))
             ->add("age", "text", array("required" => false))
             ->add("location", "text", array("required" => false))
-            ->add("url", "url", array("required" => false))
+            ->add("url", "text", array("required" => false))
             ->add("biography", "ckeditor_custom", array("required" => false))
         ;
 
