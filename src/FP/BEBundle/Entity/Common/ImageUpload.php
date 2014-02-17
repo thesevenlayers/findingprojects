@@ -175,6 +175,7 @@ abstract class ImageUpload
                     \imagecopyresampled($tmp_org, $src, 0, 0, 0, 0, $this->temp_img_size["temp_width"], $this->temp_img_size["temp_height"], $original_width, $original_height);
                     \imagecopy($dst, $tmp_org, 0, 0, $this->crop_coordinates["x"], $this->crop_coordinates["y"], $this->temp_img_size["temp_width"], $this->temp_img_size["temp_height"]);
                 }
+                \imageinterlace($dst, true);
                 \imagejpeg($dst, $this->getAbsolutePath(), 80);
             }
         }
@@ -204,6 +205,7 @@ abstract class ImageUpload
                 $white = imagecolorallocate($dst,  255, 255, 255);
                 imagefilledrectangle($dst, 0, 0, $original_width, $original_height, $white);
                 \imagecopy($dst, $src, 0, 0, 0, 0, $original_width, $original_height);
+                \imageinterlace($dst, true);
                 \imagejpeg($dst, $this->getAbsolutePath(), 80);
             }
         }
@@ -247,7 +249,7 @@ abstract class ImageUpload
             $white = imagecolorallocate($dst,  255, 255, 255);
             imagefilledrectangle($dst, 0, 0, $original_width, $original_height, $white);
             \imagecopyresampled($dst, $src, 0, 0, $cropLeft, $cropTop, $resizeWidth, $resizeHeight, $original_width, $original_height);
-
+            \imageinterlace($dst, true);
             \imagejpeg($dst, $this->getThumbAbsolutePath(), 80);
         }
 
